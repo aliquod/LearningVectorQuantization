@@ -110,7 +110,6 @@ class LVQPrototype:
         "Computes the decision boundaries with a list of prototypes, then converts those boundaries into shapely.LineString to slice self.boundary."
         boundary_lines = [LVQPrototype.boundary_line_between(self, other, x_column, y_column) for other in other_prototypes]
         for line in boundary_lines:
-            pass
             if line.slope is not None:
                 line_left_end = (self.xmin, line.y_at_x(self.xmin))
                 line_right_end = (self.xmax, line.y_at_x(self.xmax))
@@ -272,23 +271,6 @@ class Line2D:
     
     def y_at_x(self, x):
         return self.slope * x + self.intercept
-
-    # def intersection(line1, line2):
-    #     if line1.slope is not None and line2.slope is not None:
-    #         x_intersection = - (line1.intercept - line2.intercept) / (line1.slope - line2.slope)
-    #         y_intersection = x_intersection * line1.slope + line1.intercept
-    #         intersection = np.array([x_intersection, y_intersection])
-    #     elif line1.slope is None:
-    #         if line2.slope is None:
-    #             return None
-    #         else:
-    #             intersection = np.array([line1.point[0], line2.y_at_x(line1.point[0])])
-    #     else:
-    #         intersection = np.array([line2.point[0], line1.y_at_x(line2.point[0])])
-    #     return intersection
-
-    # def intersections_with(self, lines: list["Line2D"]):
-    #     return [Line2D.intersection(self, line) for line in lines]
     
     def perpendicular_line(self, intersection: list[float] | np.ndarray | None = None):
         new_direction = np.matmul(np.array([[0,-1],[1,0]]), self.direction)
