@@ -225,7 +225,7 @@ class LearningVectorQuantization:
     def plot_training(self, fig, axis, x_column, y_column, colors_mapper, plot_paths: bool = False):
         "Plots the training data and the prototypes on the axis given."
         for category_name, category_data in self.class_grouped_data:
-            plt.plot([],marker="", ls="", label = category_name.capitalize())   # place holder for column title
+            plt.plot([],marker="", ls="", label = r"$\bf{" + category_name.capitalize() + "}$")   # place holder for column title
             axis.scatter(category_data[x_column], category_data[y_column],
                          c = colors_mapper[category_name], alpha=0.2,
                          label = "observation")
@@ -236,8 +236,7 @@ class LearningVectorQuantization:
                 for i, prototype in enumerate(self.prototypes_of_category(category_name)):
                     prototype.plot(axis, x_column=x_column, y_column=y_column, color_mapper=colors_mapper, add_legend=(i==0))
     
-    def plot(self, x_column, y_column, color_mapper, plot_paths: bool = False, v_adjust = -0.35):
-        fig, ax = plt.subplots(1,1)
+    def plot(self, fig, ax, x_column, y_column, color_mapper, plot_paths: bool = False, v_adjust = -0.35):
         self.plot_training(fig, ax, x_column, y_column, color_mapper, plot_paths)
         self.plot_all_boundaries(fig, ax, x_column, y_column, color_mapper)
         handles, labels = ax.get_legend_handles_labels()
