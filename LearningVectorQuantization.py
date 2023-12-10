@@ -110,6 +110,7 @@ class LVQPrototype:
         "Computes the decision boundaries with a list of prototypes, then converts those boundaries into shapely.LineString to slice self.boundary."
         boundary_lines = [LVQPrototype.boundary_line_between(self, other, x_column, y_column) for other in other_prototypes]
         for line in boundary_lines:
+            pass
             if line.slope is not None:
                 line_left_end = (self.xmin, line.y_at_x(self.xmin))
                 line_right_end = (self.xmax, line.y_at_x(self.xmax))
